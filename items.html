@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Examen THYP 2023 2024 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <script src="https://use.fontawesome.com/2ddc4a0f9c.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <h4 style="text-align: center;">Items</h4>
+    <div class="row" id="items">
+    </div>
+  </div>
+  </div>
+  <script>
+    const apiUrl = "http://localhost/omeka-s/api/items?";
+
+    getData(apiUrl);
+
+    function getData(url) {
+      d3.json(url)
+        .then(function (data) {
+          showItems(data);
+        })
+        .catch(function (error) {
+          console.error("Error fetching data:", error);
+        });
+    }
+
+    function getMedia(mediaUrl) {
+      return new Promise(function (resolve, reject) {
+        d3.json(mediaUrl)
+          .then(function (mediaData) {
+            if (mediaData["o:source"]) {
+              resolve(mediaData["o:source"]);
+            } else {
+              reject("No media source found");
+            }
+          })
+          .catch(function (error) {
+            reject(error);
+          });
+      });
+    }
+
+    function showItems(data) {
+      let cards = d3.select('#items').selectAll(".col-3").data(data).enter()
+        .append('div').attr('class', 'col-sm-4 mb-12').style('margin-bottom', '10px')
+        .append("div").attr('class', 'card');
+
+      let cardBody = cards.append('div').attr('class', 'card-body');
+
+      cardBody.html(function (d) {
+        return `
+          <h5>${d["o:id"]}</h5>
+          <h6>${d["o:title"]}</h6>
+          
+        `;
+      });
+
+      cards.each(function (d) {
+        const imgId = "imgCard" + d["o:id"];
+        if (d["o:media"] && d["o:media"][0] && d["o:media"][0]["@id"]) {
+          getMedia(d["o:media"][0]["@id"])
+            .then(function (mediaSource) {
+              d3.select("#" + imgId).attr("src", mediaSource);
+            })
+            .catch(function (error) {
+              console.error("Error fetching media:", error);
+            });
+        }
+      });
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
