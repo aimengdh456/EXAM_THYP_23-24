@@ -1,0 +1,71 @@
+{
+    "o:label": "athlete",
+    "o:resource_template_property": [
+        {
+            "o:alternate_label": null,
+            "o:alternate_comment": null,
+            "o:is_required": false,
+            "o:is_private": false,
+            "o:default_lang": null,
+            "data_types": [],
+            "vocabulary_namespace_uri": "http:\/\/purl.org\/dc\/terms\/",
+            "vocabulary_label": "Dublin Core",
+            "local_name": "title",
+            "label": "Title"
+        },
+        {
+            "o:alternate_label": null,
+            "o:alternate_comment": null,
+            "o:is_required": false,
+            "o:is_private": false,
+            "o:default_lang": null,
+            "data_types": [],
+            "vocabulary_namespace_uri": "https:\/\/JeuxOlympiques.univ-paris8.fr\/onto\/joc#",
+            "vocabulary_label": "JeuxOlympiques",
+            "local_name": "result",
+            "label": "result"
+        },
+        {
+            "o:alternate_label": null,
+            "o:alternate_comment": null,
+            "o:is_required": false,
+            "o:is_private": false,
+            "o:default_lang": null,
+            "data_types": [],
+            "vocabulary_namespace_uri": "https:\/\/JeuxOlympiques.univ-paris8.fr\/onto\/joc#",
+            "vocabulary_label": "JeuxOlympiques",
+            "local_name": "name",
+            "label": "name"
+        },
+        {
+            "o:alternate_label": null,
+            "o:alternate_comment": null,
+            "o:is_required": false,
+            "o:is_private": false,
+            "o:default_lang": null,
+            "data_types": [],
+            "vocabulary_namespace_uri": "https:\/\/JeuxOlympiques.univ-paris8.fr\/onto\/joc#",
+            "vocabulary_label": "JeuxOlympiques",
+            "local_name": "country",
+            "label": "country"
+        },
+        {
+            "o:alternate_label": null,
+            "o:alternate_comment": null,
+            "o:is_required": false,
+            "o:is_private": false,
+            "o:default_lang": null,
+            "data_types": [],
+            "vocabulary_namespace_uri": "https:\/\/JeuxOlympiques.univ-paris8.fr\/onto\/joc#",
+            "vocabulary_label": "JeuxOlympiques",
+            "local_name": "rank",
+            "label": "rank"
+        }
+    ],
+    "o:resource_class": {
+        "vocabulary_namespace_uri": "https:\/\/JeuxOlympiques.univ-paris8.fr\/onto\/joc#",
+        "vocabulary_label": "JeuxOlympiques",
+        "local_name": "athlete",
+        "label": "athlete"
+    }
+}
